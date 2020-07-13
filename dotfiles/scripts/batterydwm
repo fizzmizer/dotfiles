@@ -1,0 +1,51 @@
+#!/bin/sh
+
+case $BUTTON in
+    2) "st" -e "vim" "$0";;
+esac
+
+bat=$(cat /sys/class/power_supply/BAT0/capacity)
+status=$(cat /sys/class/power_supply/BAT0/status)
+
+ramp10=󰁺
+ramp20=󰁻
+ramp30=󰁼
+ramp40=󰁽
+ramp50=󰁾
+ramp60=󰁿
+ramp70=󰂀
+ramp80=󰂁
+ramp90=󰂂
+ramp100=󰁹
+
+if [[ $status == "Discharging" ]]; then
+    ifg=^c#d91e36^
+elif [[ $status == "Full" ]]; then
+    ifg=^c#d91e36^
+else
+    ifg=^c#d91e36^
+fi
+
+tfg=^d^
+
+if [[ $bat -lt 10 ]]; then
+    echo "$ifg$ramp10 $bat%$tfg"
+elif [[ $bat -lt 20 ]]; then
+    echo "$ifg$ramp20 $bat%$tfg"
+elif [[ $bat -lt "30" ]]; then
+    echo "$ifg$ramp30 $bat%$tfg"
+elif [[ $bat -lt "40" ]]; then
+    echo "$ifg$ramp40 $bat%$tfg"
+elif [[ $bat -lt "50" ]]; then
+    echo "$ifg$ramp50 $bat%$tfg"
+elif [[ $bat -lt "60" ]]; then
+    echo "$ifg$ramp60 $bat%$tfg"
+elif [[ $bat -lt "70" ]]; then
+    echo "$ifg$ramp70 $bat%$tfg"
+elif [[ $bat -lt "80" ]]; then
+    echo "$ifg$ramp80 $bat%$tfg"
+elif [[ $bat -lt "90" ]]; then
+    echo "$ifg$ramp90 $bat%$tfg"
+elif [[ $bat -le "100" ]]; then
+    echo "$ifg$ramp100 $bat%$tfg"
+fi

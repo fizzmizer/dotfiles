@@ -1,0 +1,22 @@
+#!/bin/sh
+
+case $BUTTON in
+        2) "st" -e "vim" "$0";;
+esac
+
+
+ifg=^c#ffbe0b^
+tfg=^d^
+
+
+#icon=""
+#icon=""
+icon=󰮯
+updates=$(checkupdates | wc -l)
+
+
+if [ $updates -gt 0 ]; then
+    notify-send "pacman updates ($updates)"
+fi
+
+echo "$ifg$icon $updates$tfg"

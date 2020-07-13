@@ -1,0 +1,259 @@
+#+TITLE: .config.org
+#+AUTHOR: Antoine
+
+
+* Theme
+J'aime bien Gruvbox dark medium. Ici, il vérifie s'il est installé, l'installe si ça n'est pas le cas et le load. Voir le .emacs pour les changements de couleur au sein de ce thème (principalement pour les titres de org-mode.
+
+#+BEGIN_SRC emacs-lisp
+(unless (package-installed-p 'gruvbox-theme)
+  (package-refresh-contents)
+  (package-install 'gruvbox-theme))
+(load-theme 'gruvbox-dark-medium)
+#+END_SRC
+* Changements mineurs
+Quelques changements de forme : le scroll, les menus, la complétion...
+
+#+BEGIN_SRC emacs-lisp
+(delete-selection-mode 1)
+(scroll-bar-mode -1)
+(global-visual-line-mode t)
+(line-number-mode 1)
+(column-number-mode 1)
+(setq completion-ignore-case t)
+(setq read-buffer-completion-ignore-case t)
+(setq read-file-name-completion-ignore-case t)
+(setq scroll-conservatively 100)
+(global-set-key (kbd "C-x a") 'shell)
+(global-set-key (kbd "C-x d") 'calendar)
+(put 'downcase-region 'disabled nil)
+#+END_SRC
+* Rainbow
+Des couleurs pour les parenthèses et les codes hexadécimaux
+
+#+BEGIN_SRC emacs-lisp 
+(use-package rainbow-delimiters
+  :ensure t
+  :init
+    (add-hook 'prog-mode-hook #'rainbow-delimiters-mode))
+(use-package rainbow-mode
+  :ensure t
+  :init
+    (add-hook 'prog-mode-hook 'rainbow-mode))
+#+END_SRC 
+* Kill ring
+Juste pour avoir le kill ring qui s'affiche avec M-y
+
+#+BEGIN_SRC emacs-lisp
+(use-package popup-kill-ring
+  :ensure t
+  :bind ("M-y" . popup-kill-ring))
+#+END_SRC
+* Swiper
+La recherche avec C-s c'est bien, swiper la rend plus rapide
+
+#+BEGIN_SRC emacs-lisp
+(use-package swiper
+  :ensure t
+  :bind ("C-s" . swiper))
+#+END_SRC
+* Outline
+Outline avec outline magic : dans LaTex, ça permet de replier les \sections (et autres) avec H-tab. (H est la touche hyper, pas configurée par défaut sur les claviers. En absence de touche Hyper, je conseille de mettre C-tab.
+
+#+BEGIN_SRC emacs-lisp
+(eval-after-load 'outline
+  '(progn
+    (require 'outline-magic)
+    (define-key outline-minor-mode-map (kbd "<H-tab>") 'outline-cycle)))
+ (add-hook 'LaTeX-mode-hook      
+	   (lambda ()
+        (setq outline-promotion-headings
+              '("\\part" "\\chapter" "\\section" "\\subsection"
+                "\\subsubsection" "\\paragraph" "\\subparagraph"))))
+#+END_SRC
+* Org-bullets
+Des jolies puces pour les titre de org-mode. On peut facilement modifier org-bullets-bullet-list en retirant, changeant ou ajoutant des symboles (autant qu'on veut). Pour les couleurs, faut aller modifier les variables org-level-x (x étant le niveau du titre) dans le .emacs. Les couleurs qui y sont pour l'instant sont pas top, mais au moins c'est lisible.
+#+BEGIN_SRC emacs-lisp
+(require 'org-bullets)
+
+(setq org-bullets-face-name (quote org-bullet-face))
+(add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
+(add-hook 'org-mode-hook 'org-indent-mode)
+(setq org-bullets-bullet-list '("⨂" "⬢" "◈" "✚" "✖" "⚫" "⍟"  "❂" ))
+#+END_SRC
+* LaTeX
+On passe au plus important. Sauf que ce qui se trouve ici est vraiment particulier au comportement que j'aime bien, donc pas forcément reproductible tel quel pour tout le monde, principalement au niveau du lecteur PDF, qui ne sera très probablement pas configuré comme le mien. Le reste est principalement là pour éviter les indentations qui me dérangent quand j'insère automatiquement des balises avec AucTeX. outline-minor-mode est nécessaire pour replier les sections. C-x t permet d'ouvrir des templates. Cette manière de faire est totalement personnelle, donc à ne pas reproduire (en tout cas tant que vous n'aurez pas créé vos templates dans un dossier dédié).
+
+#+BEGIN_SRC emacs-lisp
+(setq TeX-clean-confirm nil)
+(setq LaTeX-indent-level 0)
+(add-hook 'LaTeX-mode-hook
+          (lambda ()
+            (kill-local-variable 'line-indent-function)))
+
+(global-set-key (kbd "C-x t")  (lambda () (interactive)
+                                     (cd "~/.emacs.d/templates/")
+                                     (call-interactively 'insert-file-literally)))
+
+(setq TeX-view-program-selection
+ '((output-pdf "PDF Viewer")))
+(setq TeX-view-program-list
+ '(("PDF Viewer" "okular --unique %o")))
+
+(add-hook 'LaTeX-mode-hook 'outline-minor-mode)
+#+END_SRC
+* Agenda
+Le diary en français, les dates au bon format dans org-mode.
+#+BEGIN_SRC emacs-lisp
+ (setq calendar-week-start-day 1
+          calendar-day-name-array ["Dimanche" "Lundi" "Mardi" "Mercredi"
+                                   "Jeudi" "Vendredi" "Samedi"]
+          calendar-month-name-array ["Janvier" "Février" "Mars" "Avril" "Mai"
+                                     "Juin" "Juillet" "Août" "Septembre"
+                                       "Octobre" "Novembre" "Décembre"])
+(setq-default org-display-custom-times t)
+(setq org-time-stamp-custom-formats '("<%A %e %B %Y>" . "<%A %e %B %Y %H:%M>"))
+(add-hook 'calendar-initial-window-hook 'diary-mark-entries)
+(add-hook 'calendar-initial-window-hook 'calendar-scroll-left)
+#+END_SRC
+* undo-tree, ace-window, move-text, mark-multiple, avy
+C'est pratique ! undo-tree permet de naviguer dans les undo plus facilement, ace-window facilite le changement de fenêtres à l'intérieur d'emacs, move-text permet de monter ou descendre du texte avec les flèches et mark-multiple permet de modifier plusieurs régions identiques en même temps, avy permet de jumper facilement à un endroit de la fenêtre. J'aime bien les bindings actuels mais ils sont carrément personnels, donc tout à fait changeables.
+#+BEGIN_SRC emacs-lisp
+(use-package undo-tree
+    :ensure t
+    :bind
+( "C-z" . 'undo-tree-undo)
+("C-M-z" . 'undo-tree-redo)
+    :config
+(global-undo-tree-mode 1))
+
+(use-package ace-window
+    :ensure t
+    :bind
+("C-x C-<down>" . 'ace-window)
+("C-x C-j" . 'ace-window)
+("C-x C-<up>" . 'ace-window))
+
+(use-package move-text
+    :ensure t
+    :bind
+("M-<up>" . 'move-text-up)
+("M-<down>" . 'move-text-down))
+
+(use-package mark-multiple
+    :ensure t
+    :bind
+("M-ù" . 'mark-previous-like-this)
+("M-%" . 'mark-next-like-this)
+("C-M-m" . 'mark-more-like-this)
+("M-µ" . 'mark-all-like-this))
+
+(use-package avy
+	     :ensure t
+	     :bind
+	     ("M-s" . avy-goto-char))
+#+END_SRC
+
+* Ouvrir et reload la config
+Des raccourcis pratiques pour oucrir et reloader le config sans avoir besoin d'aller au fin fond des dossiers.
+
+#+BEGIN_SRC emacs-lisp
+(defun config-visit ()
+  (interactive)
+  (find-file "~/.emacs.d/config.org"))
+(global-set-key (kbd "H-c") 'config-visit)
+
+(defun config-reload ()
+  "Reloads ~/.emacs at runtime"
+  (interactive)
+  (load-file (expand-file-name "~/.emacs")))
+(global-set-key (kbd "H-r") 'config-reload)
+#+END_SRC
+* Evil
+J'avoue, j'aime bien mélanger emacs et vim. Mais la touche escape est trop loin, donc pour revenir au mode normal j'ai mis d'autres touches. Chez moi home est plus proche des doigts, et C-e est très accessible parce que ctrl est en fait ma touche Shift Lock. Donc c'est très personnel et probablement pas reproductible tel quel. Cependant, je pense que changer la touche du retour au mode normal est de toute façon une bonne idée, sauf si vous aimez aller toutes les deux secondes chercher escape au bout du monde.
+
+#+BEGIN_SRC emacs-lisp
+(with-eval-after-load 'evil-maps
+    (define-key evil-insert-state-map (kbd "C-e") 'evil-normal-state))
+
+(require 'evil)
+(evil-mode 1)
+#+END_SRC
+
+# Ou alors, on peut essayer de reproduire au mieux evil uniquement avec une touche Hyper. Je trouve que ça facilite quelques petites choses. Dans la suite, les touches sont à leur place normale, Shift Lock fait juste office de touche Hyper.
+
+# Tout d'abord, on peut simplifier la base de emacs avec Hyper au lieu de Ctrl, plus simple pour les doigts.
+# #+BEGIN_SRC emacs-lisp
+#   (global-set-key (kbd "H-x H-s") 'save-buffer)
+#   (global-set-key (kbd "H-x H-f") 'find-file)
+#   (global-set-key (kbd "H-a") 'move-beginning-of-line)
+#   ;; (global-set-key (kbd "H-e") 'move-end-of-line)
+#   (global-set-key (kbd "H-h") 'backward-char)
+#   (global-set-key (kbd "H-j") 'next-line)
+#   (global-set-key (kbd "H-k") 'previous-line)
+#   (global-set-key (kbd "H-l") 'forward-char)
+#   (global-set-key (kbd "H-x k") 'kill-buffer)
+  
+#+END_SRC
+* Buffers inutiles
+Retire tous les buffers que je n'utilise jamais.
+
+#+BEGIN_SRC emacs-lisp
+(defun remove-scratch-buffer ()
+  (if (get-buffer "*scratch*")
+      (kill-buffer "*scratch*")))
+(add-hook 'after-change-major-mode-hook 'remove-scratch-buffer)
+
+(setq-default message-log-max nil)
+(kill-buffer "*Messages*")
+
+(add-hook 'minibuffer-exit-hook
+      '(lambda ()
+         (let ((buffer "*Completions*"))
+           (and (get-buffer buffer)
+                (kill-buffer buffer)))))
+
+(setq inhibit-startup-buffer-menu t)
+
+(add-hook 'window-setup-hook 'delete-other-windows)
+#+END_SRC
+* spaceline
+Un plus joli minibuffer.
+#+BEGIN_SRC emacs-lisp
+(use-package spaceline
+  :ensure t
+  :config
+  (require 'spaceline-config)
+
+ (setq powerline-default-separator 'arrow
+        spaceline-separator-dir-left '(left . left)
+        spaceline-separator-dir-right '(right . right)
+        ;powerline-height 27
+        spaceline-buffer-size-p nil
+        
+ )
+
+  (spaceline-spacemacs-theme)
+
+)
+#+END_SRC
+** Diminish
+Pour retirer les trucs inutiles de spaceline
+#+BEGIN_SRC emacs-lisp
+(use-package diminish
+:ensure t
+:init
+(diminish 'undo-tree-mode)
+(diminish 'org-indent-mode)
+(diminish 'visual-line-mode)
+)
+#+END_SRC
+* Ma page d'accueil
+J'aime bien avoir mon organisator à l'ouverture.
+#+BEGIN_SRC emacs-lisp
+(find-file "~/Documents/Work In Progress/.organisator.org")
+#+END_SRC
+* aspell (en cours)
+#+BEGIN_SRC emacs-lisp
+(setq-default ispell-program-name "/usr/bin/aspell-import")
+#+END_SRC

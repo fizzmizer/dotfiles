@@ -1,0 +1,18 @@
+#!/bin/sh
+
+
+case $BUTTON in
+        2) "st" -e "vim" "$0";;
+esac
+
+ifg=^c#1DB954^
+tfg=^d^
+
+#icon="💡"
+#icon="󰌵"
+#icon="󰱌"
+#icon="󰃞"
+icon=󰃠
+light="$(xbacklight | sed -n 's/\..*//p')" 
+
+echo "$ifg$icon $light%$tfg"

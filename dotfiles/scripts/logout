@@ -1,0 +1,12 @@
+#!/bin/bash
+
+
+
+logoutMenu=$(echo -e "shutdown\nlogout\nreboot\nhibernate" | dmenu -n)
+
+case "$logoutMenu" in
+      shutdown)  shutdown -h now & ;;
+      logout) killall dwm & ;;
+      reboot)  shutdown -r now & ;;
+      hibernate) systemctl hibernate & ;;
+esac
