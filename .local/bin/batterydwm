@@ -18,12 +18,11 @@ ramp80=󰂁
 ramp90=󰂂
 ramp100=󰁹
 
+
 if [[ $status == "Discharging" ]]; then
     ifg=^c#d91e36^
-elif [[ $status == "Full" ]]; then
-    ifg=^c#d91e36^
 else
-    ifg=^c#d91e36^
+    ifg=^c#d91e36^󱐋
 fi
 
 tfg=^d^
@@ -46,6 +45,8 @@ elif [[ $bat -lt "80" ]]; then
     echo "$ifg$ramp80 $bat%$tfg"
 elif [[ $bat -lt "90" ]]; then
     echo "$ifg$ramp90 $bat%$tfg"
-elif [[ $bat -le "100" ]]; then
+elif [[ $bat -lt "100" ]]; then
     echo "$ifg$ramp100 $bat%$tfg"
+elif [[ $bat -eq "100" ]]; then
+    echo "^c#d91e36$ramp100$tfg"
 fi
