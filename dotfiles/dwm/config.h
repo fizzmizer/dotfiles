@@ -65,7 +65,7 @@ static const char *dmenucmd[] = { "/home/antoine/dotfiles/dmenu/run-recent.sh", 
 
 static Key keys[] = {
 	/* modifier             key    function        argument */
-	{ MODKEY,               32,    spawn,          SHCMD("/home/antoine/dotfiles/scripts/logout") }, // o
+	{ MODKEY,               32,    spawn,          SHCMD("/home/antoine/.local/bin/logout") }, // o
 	{ MODKEY,               40,    spawn,          SHCMD("/home/antoine/dotfiles/dmenu/run-recent.sh") }, // d
 	{ MODKEY|ShiftMask,     25,    spawn,          SHCMD("st -e ranger") }, // Z
 	{ MODKEY,               36,    spawn,          SHCMD("st") }, // Return
