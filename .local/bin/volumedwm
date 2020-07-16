@@ -12,7 +12,7 @@ tfg=^d^
 
 volstat="$(pactl list sinks)"
 
-echo "$volstat" | grep -q "Mute: yes" && echo "$ifg󰖁^d^" && exit
+echo "$volstat" | grep -q "Mute: yes" && echo "󰖁" && exit
 
 vol="$(echo "$volstat" | grep '[0-9]\+%' | sed "s,.* \([0-9]\+\)%.*,\1,;1q")"
 
@@ -26,4 +26,5 @@ else
   icon=󰖀
 fi
 
-echo "$ifg$icon $vol%$tfg"
+#echo "$icon $vol%"
+printf "%s %s%%\n" $icon $vol;

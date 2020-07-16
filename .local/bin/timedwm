@@ -8,6 +8,6 @@ esac
 ifg=^c#ffbe0b^
 tfg=^d^
 
-date=$(date '+%s %A %d/%m/%Y - %R')
+date=$(date '+%s | %A %d/%m/%Y - %R')
 
-echo "$ifg$date$tfg"
+echo "$date "
