@@ -19,4 +19,4 @@ fi
 #icon="🌐"
 #icon="󰤨"
 icon="󰆋"
-echo "$ifg$icon $CONNAME$tfg"
+printf "%s %s\n" $icon $CONNAME;

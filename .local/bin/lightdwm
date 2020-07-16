@@ -15,4 +15,4 @@ tfg=^d^
 icon=󰃠
 light="$(xbacklight | sed -n 's/\..*//p')" 
 
-echo "$ifg$icon $light%$tfg"
+printf "%s %s%%\n" $icon $light;
