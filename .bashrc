@@ -202,4 +202,5 @@ alias u="cd ~/Documents/universite/"
 alias lec="cd ~/Documents/universite/lectures/"
 stty -ixon
 source ~/.vim/plugged/gruvbox/gruvbox_256palette.sh
-alias config='/usr/bin/git --git-dir=/home/antoine/.dotfiles/ --work-tree=/home/antoine'
+alias config="/usr/bin/git --git-dir=/home/antoine/.dotfiles/ --work-tree=/home/antoine"
+alias yt="youtube-dl"
