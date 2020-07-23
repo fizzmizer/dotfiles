@@ -29,6 +29,7 @@ let &t_EI = "\e[1 q"
 
 
 filetype plugin indent on
+syntax on
 
 call plug#begin('~/.vim/plugged')
 
@@ -90,6 +91,8 @@ let g:lightline = {
 \ }
 
 
+
+let g:vimwiki_list = [{'path': '~/wiki/', 'path_html': '~/wiki/'}]
 
 
 let g:gruvbox_italic=1
