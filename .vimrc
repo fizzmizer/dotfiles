@@ -79,6 +79,27 @@ function! WordCount()
 endfunction
 
 
+function! VimwikiLinkHandler(link)
+" Use Vim to open external files with the 'vfile:' scheme.  E.g.:
+"   1) [[vfile:~/Code/PythonProject/abc123.py]]
+"   2) [[vfile:./|Wiki Home]]
+let link = a:link
+if link =~# '^vfile:'
+  let link = link[1:]
+else
+  return 0
+endif
+let link_infos = vimwiki#base#resolve_link(link)
+if link_infos.filename == ''
+  echomsg 'Vimwiki Error: Unable to resolve link!'
+  return 0
+else
+  exe 'tabnew ' . fnameescape(link_infos.filename)
+  return 1
+endif
+endfunction
+
+
 let g:lightline = {
 \ 'colorscheme': 'darkula',
 \ 'active': {
@@ -116,6 +137,7 @@ nmap <C-h> <C-w><
 nmap <C-l> <C-w>>
 nmap <C-i> 93<C-W>>
 
+nmap gn :tabnew<Space>
 
 
 
@@ -136,7 +158,7 @@ autocmd VimLeave *.tex !rubber --clean %
 nnoremap <leader>d "=strftime("%d/%m/%Y -- %A")<CR>P
 
 
-" LaTeX Raccourcis
+"LaTeX Raccourcis
 
 autocmd FileType tex inoremap &fr \begin{frame}<Enter>\frametitle{}<Enter><Enter><++><Enter><Enter>\end{frame}<Enter><Enter><++><Esc>6kf}i
 autocmd FileType tex inoremap &it \textit{} <++><Esc>T{i
