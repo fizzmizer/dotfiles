@@ -6,4 +6,3 @@ xmodmap ~/dotfiles/xmodmap &
 picom -f --config ~/.config/picom.conf &
 dwmblocks &
 nextcloud --background &
-#dropbox &
