@@ -19,7 +19,7 @@ ramp90=󰂂
 ramp100=󰁹
 
 
-if [[ $status == "Discharging" ]]; then
+if [[ $status -eq "Discharging" ]]; then
     ifg=" "
 else
     ifg=󱐋
@@ -27,9 +27,9 @@ fi
 
 tfg=^d^
 
-if [[ $bat -lt 10 ]]; then
+if [[ $bat -lt "10" ]]; then
     echo "$ramp10$ifg$bat%"
-elif [[ $bat -lt 20 ]]; then
+elif [[ $bat -lt "20" ]]; then
     echo "$ramp20$ifg$bat%"
 elif [[ $bat -lt "30" ]]; then
     echo "$ramp30$ifg$bat%"
