@@ -299,11 +299,11 @@ smart_gaps on
 smart_borders on
 
 exec_always sh ~/dotfiles/polybar/launch.sh
-#exec_always "feh --randomize --bg-fill  ~/Pictures/Comics\ and\ wallpapers/wallpapers/*"
-exec_always "wal -i ~/Pictures/Comics\ and\ wallpapers/wallpapers/"
 exec "picom -f --config ~/.config/picom.conf"
-exec --no-startup-id dropbox
-exec_always xmodmap ~/dotfiles/xmodmap
+#exec --no-startup-id dropbox
 #exec mpd
 bindsym $mod+Shift+q exec st -e ncmpcpp
 bindsym $mod+x exec firefox
+exec_always "feh --randomize --bg-fill  ~/Pictures/Comics\ and\ wallpapers/wallpapers/*"
+exec xmodmap ~/dotfiles/xmodmap
+#exec_always "wal -i ~/Pictures/Comics\ and\ wallpapers/wallpapers/"

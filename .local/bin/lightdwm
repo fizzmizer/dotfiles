@@ -8,10 +8,6 @@ esac
 ifg=^c#1DB954^
 tfg=^d^
 
-#icon="💡"
-#icon="󰌵"
-#icon="󰱌"
-#icon="󰃞"
 icon=󰃠
 light="$(xbacklight | sed -n 's/\..*//p')" 
 
