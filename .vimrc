@@ -113,7 +113,7 @@ let g:lightline = {
 
 
 
-let g:vimwiki_list = [{'path': '~/wiki/', 'path_html': '~/wiki/'}]
+let g:vimwiki_list = [{'path': '~/Nextcloud/wiki/', 'path_html': '~/Nextcloud/wiki/'}]
 
 
 let g:gruvbox_italic=1
