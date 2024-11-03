@@ -1,0 +1,119 @@
+@define-color background       #1C1B19;
+@define-color black            #1C1B19;
+@define-color orange           #FF5F00;
+@define-color red              #EF2F27;
+@define-color teal             #008080;
+@define-color green            #519F50;
+@define-color yellow           #FBB829;
+@define-color blue             #2C78BF;
+@define-color magenta          #E02C6D;
+@define-color cyan             #0AAEB3;
+@define-color white            #BAA67F;
+@define-color bright-black     #918175;
+@define-color bright-red       #F75341;
+@define-color bright-green     #98BC37;
+@define-color bright-yellow    #FED06E;
+@define-color bright-blue      #68A8E4;
+@define-color bright-magenta   #FF5C8F;
+@define-color bright-cyan      #2BE4D0;
+@define-color bright-white     #FCE8C3;
+@define-color bright-orange    #FF8700;
+@define-color hard-black       #121212;
+@define-color xgray1           #262626;
+@define-color xgray2           #303030;
+@define-color xgray3           #3A3A3A;
+@define-color xgray4           #444444;
+@define-color xgray5           #4E4E4E;
+@define-color xgray6           #585858;
+@define-color xgray7           #626262;
+@define-color xgray8           #6C6C6C;
+@define-color xgray9           #767676;
+@define-color xgray10          #808080;
+@define-color xgray11          #8A8A8A;
+@define-color xgray12          #949494;
+
+* {
+  font-family: 'CaskaydiaCove Nerd Font', monospace;
+  font-size: 18px;
+}
+
+/* Window */
+window {
+  margin: 0px;
+  padding: 10px;
+  border: 2px dashed @bright-white;
+  border-radius: 8px;
+  background-color: @background;
+}
+
+/* Inner Box */
+#inner-box {
+  margin: 5px;
+  padding: 10px;
+  border: none;
+  background-color: @background;
+}
+
+/* Outer Box */
+#outer-box {
+  margin: 5px;
+  padding: 10px;
+  border: none;
+  background-color: @background;
+}
+
+/* Scroll */
+#scroll {
+  margin: 0px;
+  padding: 10px;
+  border: none;
+  background-color: @background;
+}
+
+/* Input */
+#input {
+  margin: 5px 20px;
+  padding: 10px;
+  border: none;
+  border-radius: 0.1em;
+  color: @bright-white;
+  background-color: @background;
+}
+
+#input image {
+    border: none;
+    color: @bright-red;
+}
+
+#input * {
+  outline: 4px solid @red!important;
+}
+
+/* Text */
+#text {
+  margin: 5px;
+  border: none;
+  color: @yellow;
+}
+
+#entry {
+  background-color: @background;
+}
+
+#entry arrow {
+  border: none;
+  color: @green;
+}
+
+/* Selected Entry */
+#entry:selected {
+  border: 0.11em solid @green;
+}
+
+#entry:selected #text {
+  color: @cyan;
+}
+
+#entry:drop(active) {
+  background-color: @teal!important;
+}
