@@ -1,0 +1,155 @@
+@import "_srcery.css";
+
+* {
+    padding: 0;
+    margin: 0;
+    font-family: "Maple Mono", "JetBrains Mono Nerd Font";
+    font-size: 14px;
+    margin-top: 1px;
+}
+
+/* ------ Cpcyanage, Temperature, and Memory ------ */
+#cpu,
+#temperature,
+#memory {
+    background-color: @background;
+    color: @bright-orange;
+}
+
+#cpu {
+    color: @green;
+}
+
+#temperature {
+    color: @yellow;
+}
+
+/* ------ Window Title ------ */
+#window {
+    color: @bright-green;
+    background-color: @background;
+    border-radius: 0px;
+    padding-right: 4px;
+}
+
+window#waybar {
+    background-color: rgba(0, 0, 0, 0);
+    border-bottom: 0px solid #ffffff;
+    background: transparent;
+    transition-property: background-color;
+    transition-duration: .5s;
+}
+
+/* -----------------------------------------------------
+ * Workspaces 
+ * ----------------------------------------------------- */
+
+#workspaces button.empty {
+    color: @bright-white;
+}
+#workspaces button {
+    border-radius: 0px;
+    padding: 0;
+    margin: 0;
+    color: @green;
+    background-color: @background;
+}
+
+#workspaces button:hover {
+    color: @red;
+}
+
+#workspaces button.persistent.visible {
+    color: @black;
+    background-color: @yellow;
+}
+
+
+/* ------ Pulseaudio ------ */
+#pulseaudio {
+    color: @orange;
+    background-color: @background;
+    padding: 2px 5px;
+}
+
+/* ------ Backlight ------ */
+#backlight {
+    color: @cyan;
+    background-color: @background;
+    padding: 2px 5px;
+}
+
+/* ------ Network ------ */
+#network {
+    color: @cyan;
+    background-color: @background;
+    padding: 2px 5px;
+}
+
+/* ------ Battery ------ */
+#battery {
+    color: @yellow;
+    background-color: @background;
+    padding: 2px 5px;
+}
+
+/* ------ Clock ------ */
+#clock {
+    padding-left: 10px;
+    color: @yellow;
+    border-radius: 0px;
+    background-color: @background;
+    font-weight: bold;
+    font-size: 12px;
+}
+
+#custom-epoch {
+    padding-left: 10px;
+    color: @yellow;
+    border-radius: 0px;
+    background-color: @background;
+    font-weight: bold;
+    font-size: 12px;
+}
+
+/* ------ System Tray ------ */
+#tray {
+    background-color: @background;
+    padding: 2px 5px;
+}
+
+/* ------ Custom Modules ------ */
+#custom-warp {
+    color: @yellow;
+    background-color: @background;
+    padding: 2px 5px;
+}
+
+#custom-power {
+    color: @red;
+    background-color: @background;
+}
+
+#custom-arch {
+    color: @blue;
+    background-color: @background;
+}
+
+#custom-arch:hover {
+    text-decoration: underline;
+    color: @yellow;
+}
+
+#custom-r_end {
+    border-radius: 0px 16px 16px 0px;
+    margin-right: 7px;
+    padding-right: 0px;
+    background-color: @background;
+}
+
+#custom-l_end {
+    border-radius: 16px 0px 0px 16px;
+    margin-left: 7px;
+    padding-left: 0px;
+    background-color: @background;
+}

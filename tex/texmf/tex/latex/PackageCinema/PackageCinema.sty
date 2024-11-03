@@ -1,0 +1,344 @@
+\NeedsTeXFormat{LaTeX2e}[1999/01/01]
+\ProvidesPackage{PackageCinema}[2016/08/14]
+%%%Last Update : 2017/06/29 : Correction d'un bug mineur dans le calcul du nombre total de répliques
+%%%Update : 2017/06/27 & 2017/06/28 : Ajout de la commande \CreePersonnage (et de son équivalent BuildCharacter)
+%%%Update : 2016/09/20 : Ajout de la commande musique
+%%%Update : 2016/08/19
+
+
+\RequirePackage[utf8]{inputenc}
+\RequirePackage[francais]{babel}
+\RequirePackage{amsmath,amsfonts,amssymb,amsthm}
+\RequirePackage{braket}
+\RequirePackage{graphicx}
+\RequirePackage{color}
+
+
+\RequirePackage{fancyhdr}
+\renewcommand{\headrulewidth}{0pt}
+
+
+\RequirePackage{etoolbox}%Pour pouvoir comparer des strings entre eux
+
+\RequirePackage{refcount}%nécéssaire pour éviter que LaTeX donne le mauvais numéro de page en début de page
+%[il permet de contourner le problème en offrant la possibilité d'interpréter un pageref comme un number]
+
+\newcounter{numOptionSuite}
+\newcounter{numAfficheSuite}
+
+\DeclareOption{suite}{\refstepcounter{numOptionSuite}}
+\DeclareOption{Suite}{\refstepcounter{numOptionSuite}}
+\DeclareOption{SUITE}{\refstepcounter{numOptionSuite}}
+\DeclareOption*{}
+\ProcessOptions
+
+\AtBeginDocument{\pagestyle{fancy}%
+	\entete%
+	\fancyhead[L]{}%
+	\fancyfoot[C]{}}
+
+
+%%%Codes inspirés de changemargin
+%%%
+\newenvironment{changemargloc}[2]{\begin{list}{}{%
+	\setlength{\leftmargin}{0pt}%
+	\setlength{\rightmargin}{0pt}%
+	\addtolength{\leftmargin}{#1}%
+	\addtolength{\rightmargin}{#2}%
+}\item }{\end{list}}
+
+\newenvironment{changemargaction}{\begin{list}{}{%
+	\setlength{\leftmargin}{0pt}%
+	\addtolength{\leftmargin}{4 ex}%
+	\addtolength{\leftmargin}{1 cm}%
+}\item }{\end{list}}
+
+\newenvironment{changemargtrans}{\begin{list}{}{%
+	\setlength{\leftmargin}{0pt}%
+	\addtolength{\leftmargin}{4 ex}%
+	\addtolength{\leftmargin}{2 cm}%
+}\item }{\end{list}}
+%%%Codes inspirés de chanmargin
+%%%
+
+
+\newcommand{\cine}{cinema}
+
+\newcounter{numscene}
+\newcounter{numscript}
+\newcounter{numreplique}
+
+
+
+\newcounter{numActiveEspaceScene}
+
+
+\newcounter{numEffaceSceneTableMatiere}
+
+
+%%%Code inspiré de celui de Christophe Troestler dans "memoire-umons.cls"
+%%%
+\renewcommand{\thesection}{%
+  \ifnum\value{chapter}>0 \thechapter .\fi
+  \arabic{section}.}
+\renewcommand{\thesubsection}{%
+  \ifnum\value{chapter}>0 \thechapter .\fi
+  \arabic{section}.\arabic{subsection}.}
+%%% Code inspiré de celui de Christophe Troestler dans "memoire-umons.cls"
+%%%
+
+
+
+\fancypagestyle{firstpage}{%
+	\fancyhead[R]{}%
+	\fancyhead[C]{}%
+	\fancyhead[L]{}%
+	}
+
+\fancypagestyle{depassepage}{%
+	\fancyhead[C]{}}
+
+\newcommand{\entete}{%
+	\fancyhead[R]{\thepage}%
+	\ifnum \thenumOptionSuite = 0%
+		\ifnum \getpagerefnumber{\thenumscript here \thenumreplique} = \getpagerefnumber{\thenumscript firstpage}%
+			\thispagestyle{firstpage}%
+		\else%
+			\fancyhead[L]{}%
+		\fi%
+	\else%
+		\ifnum \getpagerefnumber{\thenumscript here \thenumreplique} = \getpagerefnumber{\thenumscript firstpage}%
+			\thispagestyle{firstpage}
+		\else%
+			\ifnum \thenumAfficheSuite = 0%
+				\fancyhead[L]{}%
+				\fancyfoot[C]{}%
+				\fancyfoot[R]{}
+			\else%
+				\fancyhead[L]{[SUITE]}%
+				\fancyfoot[R]{[.../...]}%
+			\fi%
+		\fi%
+	\fi%
+	}
+
+
+
+\newcommand{\thetitrescript}{}
+\newcommand{\theauteurscript}{}
+\newcommand{\auteurscript}[1]{\renewcommand{\theauteurscript}{#1}}
+
+
+
+\newcommand{\ActiveEspaceScene}{\refstepcounter{numActiveEspaceScene}}
+\newcommand{\ArreteEspaceScene}{\setcounter{numActiveEspaceScene}{0}}
+
+
+
+\newcommand{\EffaceSceneTableMatiere}{\refstepcounter{numEffaceSceneTableMatiere}}
+
+\newcounter{L@stDep@ssement}%
+\setcounter{L@stDep@ssement}{100000}%
+
+
+
+
+%%%Updtae 2017/06/27 :
+%%%Ajout de la commande \CreePersonnage (et de son équivalent BuildCharacter)
+
+\newcounter{totalrepliques}
+
+\newcommand{\@emphasizeintext}[1]{\textsc{#1}}
+\newcommand{\@emphasizeinreplique}[1]{\MakeUppercase{#1}}
+
+\newcommand{\CreePersonnage}[2]{
+	\@ifundefined{@#2}{
+		\newcounter{#2}
+		\expandafter\def\csname @#2\endcsname{\@ifnextchar.{\@emphasizeintext{#1}}{\@ifnextchar,{\@emphasizeintext{#1}}{\@ifnextchar;{\@emphasizeintext{#1}}{\@ifnextchar){\@emphasizeintext{#1}}{\@ifnextchar]{\@emphasizeintext{#1}}{\@ifnextchar\}{\@emphasizeintext{#1}}{\@ifnextchar-{\@emphasizeintext{#1}}{\@emphasizeintext{#1} }}}}}}}}
+		\expandafter\def\csname @replique#2\endcsname[##1]##2{\replique[##1]{#1}{##2}}
+		\expandafter\def\csname #2\endcsname{\@ifnextchar[{\refstepcounter{#2}\refstepcounter{totalrepliques}\csname @replique#2\endcsname}{\@ifnextchar\bgroup{\refstepcounter{#2}\refstepcounter{totalrepliques}\csname @replique#2\endcsname[]}{\csname @#2\endcsname}}}
+	}{\setcounter{#2}{0}}
+}
+\newcommand{\BuildCharacter}[2]{\CreePersonnage{#1}{#2}}
+%%%Fin Updtae 2017/06/27
+%%%
+
+
+
+
+\newenvironment{script}{
+	
+	\refstepcounter{numscript}
+	\refstepcounter{numAfficheSuite}
+	\IfFileExists{\jobname_\thenumscript.\cine}{\input{\jobname_\thenumscript.\cine}}{}
+	\newwrite\depasse
+	\immediate\openout\depasse=\jobname_\thenumscript.\cine\relax
+	\immediate\write\depasse{\string\makeatletter}
+	
+	\pagebreak
+	\label{\thenumscript firstpage}
+	\entete
+
+	%%%Update 2017/06/29 : Correction d'un bug mineur dans le calcul du nombre total de répliques
+	%%%
+	\setcounter{totalrepliques}{0}
+	%%%Fin Update 2017/06/29
+	%%%
+	
+	
+	\newcommand{\titrescript}[1]{
+		\begin{center}
+			{\Huge \textbf{##1}}
+			
+			\vspace{5mm}
+			{\Large\theauteurscript}
+		\end{center}
+		\vspace{30mm}
+		\renewcommand{\thetitrescript}{##1}
+		\addcontentsline{toc}{chapter}{\thetitrescript}}
+	
+	\newcommand{\intext}{}
+	\newcommand{\journuit}{}
+	
+	\newcommand{\scene}[3]{
+		
+		\ifnum \arabic{numActiveEspaceScene} = 0%
+			\vspace{5mm}%
+			\refstepcounter{numscene}%
+		\else%
+			\ifnum \arabic{numscene} = 0%
+				\vspace{5mm}%
+				\refstepcounter{numscene}%
+			\else%
+				\pagebreak%
+				\refstepcounter{numscene}%
+			\fi%
+		\fi%
+		
+		
+		\ifnum \thenumEffaceSceneTableMatiere = 0%
+			\addcontentsline{toc}{section}{Scène \thenumscene}%
+		\else%
+			%
+		\fi%
+		
+		\ifstrequal{##3}{j}{\renewcommand{\journuit}{jour}}{
+			\ifstrequal{##3}{n}{\renewcommand{\journuit}{nuit}}{
+				\ifstrequal{##3}{s}{\renewcommand{\journuit}{soir}}{
+					\ifstrequal{##3}{m}{\renewcommand{\journuit}{matin}}{\renewcommand{\journuit}{##3}}}}}
+		
+		\ifstrequal{##1}{i}{\renewcommand{\intext}{int.}}{
+			\ifstrequal{##1}{e}{\renewcommand{\intext}{ext.}}{
+				\ifstrequal{##1}{ie}{\renewcommand{\intext}{int./ext.}}{\renewcommand{\intext}{[arg.1 invalide]}}}}
+		
+		\ifnum \arabic{numscene} < 10%
+			\noindent\thenumscene \hspace{1 ex}\hspace{1 ex}\hspace{1.cm} \MakeUppercase{\intext \ ##2 \ -- \ \journuit}%
+		\else%
+			\ifnum \arabic{numscene} < 100%
+				\noindent\thenumscene \hspace{1 ex}\hspace{1.cm} \MakeUppercase{\intext \ ##2 \ -- \ \journuit}%
+			\else%
+				\ifnum \arabic{numscene} < 1000%
+					\noindent\thenumscene \hspace{1.cm} \MakeUppercase{\intext \ ##2 \ -- \ \journuit}%
+				\else%
+					\noindent\thenumscene \hspace{-1 ex}\hspace{1.cm} Ce texte comporte bien trop de scènes mon ami !
+				\fi%
+			\fi%
+		\fi%
+		\vspace{5mm}
+
+		}
+	
+	\newcommand{\replique}[3][]{
+			
+		\refstepcounter{numreplique}
+		
+		\ifcsdef{\thenumscript dep@ssement\thenumreplique }{\fancyfoot[C]{[...]}}{}
+		\ifcsdef{\thenumscript dep@ssement\thenumreplique }{\fancyhead[C]{\MakeUppercase{##1 [suite]}}%
+			\thispagestyle{depassepage}}{}
+		
+		\ifnum \getpagerefnumber{\thenumscript here \thenumreplique} > \theL@stDep@ssement%
+			\fancyhead[C]{}%
+			\setcounter{L@stDep@ssement}{100000}%
+		\fi%
+		
+		\entete
+		
+		\begin{center}
+			\begin{changemargloc}{0.2 \paperwidth}{0.2 \paperwidth}
+				\begin{center}
+					\noindent\@emphasizeinreplique{##2}
+					
+					\ifstrequal{##1}{}{}{(##1)}
+				\end{center}
+				
+				\label{\thenumscript here \thenumreplique}%
+				##3%
+				\label{\thenumscript hereafter \thenumreplique}
+			\end{changemargloc}
+		\end{center}
+		\fancyfoot[C]{}
+		\vspace{3mm}
+		%
+		\ifnum \getpagerefnumber{\thenumscript here \thenumreplique} < \getpagerefnumber{\thenumscript hereafter \thenumreplique}%
+			\immediate\write\depasse{\string\expandafter\string\def \string\csname \space \thenumscript dep@ssement\thenumreplique \string\endcsname{\thenumreplique}}%
+		\fi%
+		\ifcsdef{\thenumscript dep@ssement\thenumreplique }{\setcounter{L@stDep@ssement}{\getpagerefnumber{\thenumscript hereafter \thenumreplique}}%
+			\refstepcounter{L@stDep@ssement}}
+		
+		}
+	
+	%%%Update 2016/08/19 : Suppression de la commande \diascalie et incorporation des didascalies comme un argument optionnel de la commande
+	%%%\replique.
+	%%%
+	%%%Fin Update 2016/08/19
+	%%%
+	
+	\newcommand{\action}[1]{
+		\begin{changemargaction}
+			##1
+		\end{changemargaction}}
+	
+	\newcommand{\transition}[1]{
+		\begin{changemargtrans}
+			\begin{flushright}
+				\MakeUppercase{##1}
+			\end{flushright}
+		\end{changemargtrans}}
+	
+	\newcommand{\valplan}[1]{
+		\begin{changemargtrans}
+			\begin{flushright}
+				\MakeUppercase{##1}
+			\end{flushright}
+		\end{changemargtrans}}
+	
+	\newcommand{\musique}[1]{
+		\begin{changemargaction}
+			\underline{MUSIQUE} : \textit{##1}
+		\end{changemargaction}}
+	
+	
+	}{
+	\entete
+	\fancyfoot[R]{}
+	
+	\pagebreak
+	\fancyhead[C]{}
+	\setcounter{numscene}{0}
+	\setcounter{numActiveEspaceScene}{0}
+	
+	\addtocontents{toc}{\vspace{\baselineskip}}
+	
+	\setcounter{numEffaceSceneTableMatiere}{0}
+	
+	\setcounter{numreplique}{0}
+	\setcounter{numAfficheSuite}{0}
+	
+	\immediate\write\depasse{\string\makeatother}
+	\immediate\closeout\depasse
+	
+	\entete
+	}
+
+
+\endinput

@@ -1,0 +1,118 @@
+\NeedsTeXFormat{LaTeX2e}[1994/06/01]
+\ProvidesPackage{preferences}
+
+%%% Divers %%%
+
+\RequirePackage[utf8]{inputenc}
+\RequirePackage[T1]{fontenc}
+\RequirePackage{float}
+\RequirePackage{csquotes}
+\RequirePackage{authblk}
+\RequirePackage{setspace}
+\RequirePackage{microtype}
+\setstretch{1.35}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%% Maths symbols %%%
+\RequirePackage{amsfonts}
+\RequirePackage{amssymb}
+\RequirePackage{amsmath}
+\RequirePackage{amsthm}
+\RequirePackage{stmaryrd}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%% Colors %%%
+\RequirePackage[dvipsnames]{xcolor}
+\definecolor{arXiv}{named}{Maroon}
+\definecolor{ColorCite}{named}{ForestGreen}
+\definecolor{ColorLink}{named}{RoyalBlue}
+\definecolor{ColorURL}{named}{RoyalBlue}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%% Fonts %%%
+\RequirePackage{pifont}
+\RequirePackage{dsfont}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%% Links %%%
+\RequirePackage[pdftex,
+                colorlinks=true,
+              	pdfstartview=FitV,
+              	linkcolor=ColorLink,
+                citecolor=ColorCite,
+                urlcolor=ColorURL,
+              	hyperindex=true,
+                hyperfigures=false]
+              	{hyperref}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%% Format %%%
+% \RequirePackage{graphicx}
+% \RequirePackage{tabularx}
+\RequirePackage{fancyhdr}
+\RequirePackage{mdframed}
+\RequirePackage{indentfirst}
+\RequirePackage{relsize}
+\RequirePackage[normalem]{ulem}
+\RequirePackage{lastpage}
+\RequirePackage{enumitem}
+\setitemize[1]{label=$\bullet$}
+\urlstyle{same}
+%%% Setting up margins, etc ... %%%
+\setlength{\topmargin}{0cm}
+\setlength{\headheight}{0.4cm}
+\setlength{\headsep}{0.8cm}
+\setlength{\footskip}{1cm}
+\setlength{\textwidth}{17cm}
+\setlength{\textheight}{25cm}
+\setlength{\voffset}{-1.5cm}
+\setlength{\hoffset}{-0.5cm}
+\setlength{\oddsidemargin}{0cm}
+\setlength{\evensidemargin}{0cm}
+\setlength{\parindent}{0.5cm}
+\renewcommand{\footrulewidth}{.4pt}
+
+\fancyhf{}
+% \pagestyle{fancy}
+\cfoot{\thepage\, / \pageref*{LastPage}}
+% \cfoot{--\,\thepage\,-- }
+
+\renewcommand{\theequation}{\arabic{section}.\arabic{equation}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% %%% To do notes %%%
+\RequirePackage[textsize=scriptsize]{todonotes}
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%% TikZ stuff %%%
+\RequirePackage{tikz, tikz-cd}
+\usetikzlibrary{arrows, matrix}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%% Young diagrams %%%
+% \RequirePackage{genyoungtabtikz}
+% \Yboxdim{5pt}
+% \Ylinethick{1pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%% Environments %%%
+%\newtheorem{theorem}{Théorème}[section]
+%\newtheorem*{theorem*}{Théorème}
+%\newtheorem{lemma}[theorem]{Lemme}
+%\newtheorem*{lemma*}{Lemme}
+%\newtheorem{proposition}[theorem]{Proposition}
+%\newtheorem{corollary}[theorem]{Corollaire}
+%\newtheorem{example}{Exemple}[section]
+%\theoremstyle{definition}
+%\newtheorem{definition}{Définition}[section]
+%\newtheorem*{definition*}{Définition}
+%\theoremstyle{remark}
+%\newtheorem{remark}{Remarque}
+%\newtheorem{prop}{Proposition}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%
+\endinput
