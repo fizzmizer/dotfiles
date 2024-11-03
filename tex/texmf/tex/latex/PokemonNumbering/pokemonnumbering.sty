@@ -1,0 +1,52 @@
+% PokemonNumbering package
+% Copyright (c) 2018 Lilian Besson (Naereen), https://github.com/Naereen
+% The MIT License (MIT)
+% https://github.com/Naereen/LaTeX-article-with-Pokemon-numbering
+%
+\NeedsTeXFormat{LaTeX2e}[1994/06/01]
+\ProvidesPackage{pokemonnumbering}[2018/01/12 v0.1 PokemonNumbering Package]
+\message{<PokemonNumbering LaTeX2e Package. Ask to naereen AT crans DOT org or https://github.com/Naereen/LaTeX-article-with-Pokemon-numbering/issues/new for any problem.>}
+
+\RequirePackage{fancyhdr}
+\RequirePackage[export]{adjustbox}
+
+% Options: right, left, rotate
+\newif\if@right\@rightfalse
+\DeclareOption{right}{
+    \@righttrue
+}
+\newif\if@left\@leftfalse
+\DeclareOption{left}{
+    \@lefttrue
+}
+\newif\if@rotate\@rotatefalse
+\DeclareOption{rotate}{
+    \@rotatetrue
+}
+\ExecuteOptions{right}
+\ProcessOptions\relax
+
+\if@right\@leftfalse\fi
+
+% The main command
+\newcommand{\pokemonnumbering}{%
+\clearpage%
+\pagestyle{fancy}%
+\pagenumbering{arabic}%
+\renewcommand*{\thepage}{\arabic{page}}%
+\if@rotate
+    \if@left
+        \rfoot{\includegraphics[height=40pt,angle=-20,right]{icons/\thepage.png}}
+    \else
+        \lfoot{\includegraphics[height=40pt,angle=20,left]{icons/\thepage.png}}
+    \fi
+\else
+    \if@left
+        \rfoot{\includegraphics[height=40pt,right]{icons/\thepage.png}}
+    \else
+        \lfoot{\includegraphics[height=40pt,left]{icons/\thepage.png}}
+    \fi
+\fi
+}
+
+\endinput
