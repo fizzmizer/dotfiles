@@ -8,10 +8,10 @@ $os\
 $username\
 [](bg:color_yellow fg:color_orange)\
 $directory\
-[](fg:color_yellow bg:color_aqua)\
+[](fg:color_yellow bg:color_green)\
 $git_branch\
 $git_status\
-[](fg:color_aqua bg:color_blue)\
+[](fg:color_green bg:color_blue)\
 $c\
 $rust\
 $golang\
@@ -29,7 +29,20 @@ $time\
 [ ](fg:color_bg1)\
 $line_break$character"""
 
-palette = 'gruvbox_dark'
+palette = 'srcery'
+
+[palettes.srcery]
+color_fg0 = '#fce8c3'
+color_bg1 = '#3c3836'
+color_bg3 = '#665c54'
+color_blue = '#2c78bf'
+color_green = '#519f50'
+color_aqua = '#98bc37'
+color_purple = '#e02c6d'
+color_yellow = '#fbb829'
+color_orange = '#ff5f00'
+color_red = '#ef2f27'
+color_black = '#1c1b19'
 
 [palettes.gruvbox_dark]
 color_fg0 = '#fbf1c7'
@@ -77,7 +90,7 @@ style_root = "bg:color_orange fg:color_fg0"
 format = '[ $user ]($style)'
 
 [directory]
-style = "fg:color_fg0 bg:color_yellow"
+style = "fg:color_black bg:color_yellow"
 format = "[ $path ]($style)"
 truncation_length = 3
 truncation_symbol = "…/"
@@ -92,11 +105,11 @@ truncation_symbol = "…/"
 [git_branch]
 symbol = ""
 style = "bg:color_aqua"
-format = '[[ $symbol $branch ](fg:color_fg0 bg:color_aqua)]($style)'
+format = '[[ $symbol $branch ](fg:color_yellow bg:color_green)]($style)'
 
 [git_status]
 style = "bg:color_aqua"
-format = '[[($all_status$ahead_behind )](fg:color_fg0 bg:color_aqua)]($style)'
+format = '[[($all_status $ahead_behind )](fg:color_yellow bg:color_green)]($style)'
 
 [nodejs]
 symbol = ""
