@@ -93,7 +93,9 @@
         "max-length": 1000
     },
     "clock": {
-        "format": "{:%R - %d %b %Y  -}",
+        "timezone":"Europe/Brussels",
+        "locale":"fr_BE.utf-8",
+        "format": "{:L%R - %A %d %b %Y  -}",
         "rotate": 0,
         "format-alt": "{:%R}",
         "tooltip-format": "<tt>{calendar}</tt>",
