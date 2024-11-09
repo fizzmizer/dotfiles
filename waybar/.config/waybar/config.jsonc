@@ -253,7 +253,7 @@
         "format": "  {}",
         "rotate": 0,
         "exec": "echo ; echo  logout",
-        "on-click": "wlogout-launch.sh",
+        "on-click": "/home/antoine/.config/wlogout/logoutlaunch.sh 1",
         "interval": 86400, // once every day
         "tooltip": true
     },

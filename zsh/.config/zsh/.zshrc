@@ -40,6 +40,17 @@ alias syu="sudo pacman -Syu"
 alias gpom="git push origin main"
 alias gs="git status"
 alias r="ranger"
+alias lf="lfub"
 alias cd="z"
 alias yt480="yt-dlp -f 'bestvideo[height<=480]+bestaudio/best[height<=480]'"
 alias yt720="yt-dlp -f 'bestvideo[height<=720]+bestaudio/best[height<=720]'"
+
+
+function y() {
+	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
+	yazi "$@" --cwd-file="$tmp"
+	if cwd="$(command cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
+		builtin cd -- "$cwd"
+	fi
+	rm -f -- "$tmp"
+}
