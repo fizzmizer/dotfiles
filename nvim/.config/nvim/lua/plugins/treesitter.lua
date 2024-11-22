@@ -7,7 +7,7 @@ return{
           --auto_install = true,
 	  highlight = { enable = true },
 	  indent = { enable = true },
-	  incremental_selection = { 
+	  incremental_selection = {
 	    enable = true,
 	    keymaps = {
 	      init_selection = "<Leader>is",
