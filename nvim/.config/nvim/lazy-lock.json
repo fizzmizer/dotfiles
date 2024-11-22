@@ -26,7 +26,6 @@
   "todo-comments.nvim": { "branch": "main", "commit": "ae0a2afb47cf7395dc400e5dc4e05274bf4fb9e0" },
   "tokyonight.nvim": { "branch": "main", "commit": "9758827c3b380ba89da4a2212b6255d01afbcf08" },
   "vim-Grammalecte": { "branch": "master", "commit": "a0ce51a77e56151f62ddbfd10e7dec46000f2848" },
-  "vim-LanguageTool": { "branch": "master", "commit": "a1034c0d904217d4dd14479fee69dba09e77ef19" },
   "vim-ditto": { "branch": "master", "commit": "c21f0e2f651e0ae87788390dca2fb97af7fb8fcf" },
   "vim-sleuth": { "branch": "master", "commit": "be69bff86754b1aa5adcbb527d7fcd1635a84080" },
   "vimtex": { "branch": "master", "commit": "6ee92c7ed2cdc876f499bd5561a65d04dee10d1f" },
