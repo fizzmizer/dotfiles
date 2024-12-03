@@ -115,7 +115,10 @@ window#waybar {
     font-weight: bold;
     font-size: 12px;
 }
-
+#custom-pacman {
+    color: @green;
+    background-color: @background;
+}
 /* ------ System Tray ------ */
 #tray {
     background-color: @background;

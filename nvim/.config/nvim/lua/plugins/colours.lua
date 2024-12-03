@@ -16,6 +16,13 @@ return{
     end,
     },
 
-    {'raddari/last-color.nvim'},
+    {
+      'raddari/last-color.nvim',
+      init = function()
+        local theme = require('last-color').recall() or 'default'
+        vim.cmd.colorscheme(theme)
+      end,
+
+    },
 
 }
