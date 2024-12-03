@@ -15,7 +15,7 @@ return {
     trig="&eq",
     snippetType="autosnippet"
     },
-    
+
     fmta(
       [[
         \begin{equation}
@@ -32,7 +32,7 @@ return {
     trig="&enum",
     snippetType="autosnippet"
     },
-    
+
     fmta(
       [[
         \begin{enumerate}
@@ -49,7 +49,7 @@ return {
     trig="&env",
     snippetType="autosnippet"
     },
-    
+
     fmta(
       [[
         \begin{<>}
@@ -68,7 +68,7 @@ return {
     trig="&bit",
     snippetType="autosnippet"
     },
-    
+
     fmta(
       [[
         \begin{itemize}
@@ -85,7 +85,7 @@ return {
     trig="&qt",
     snippetType="autosnippet"
     },
-    
+
     fmta(
       [[
         \begin{quote}
@@ -102,7 +102,7 @@ return {
     trig="&mn",
     snippetType="autosnippet"
     },
-    
+
     fmta(
       [[
       \begin{minipage}{.48\\textwidth}
@@ -126,7 +126,7 @@ return {
     trig="&st",
     snippetType="autosnippet"
     },
-    
+
     fmta(
       [[
         \vspace{1cm}
@@ -152,7 +152,7 @@ return {
     trig="&frame",
     snippetType="autosnippet"
     },
-    
+
     fmta(
       [[
         \begin{frame}
@@ -174,7 +174,7 @@ return {
     trig="&sec",
     snippetType="autosnippet"
     },
-    
+
     fmta(
       [[
         \section{<>}
@@ -190,7 +190,7 @@ return {
     trig="&ssec",
     snippetType="autosnippet"
     },
-    
+
     fmta(
       [[
         \subsection{<>}
@@ -206,7 +206,7 @@ return {
     trig="&sssec",
     snippetType="autosnippet"
     },
-    
+
     fmta(
       [[
         \subsubsection{<>}
@@ -222,7 +222,7 @@ return {
     trig="&vs",
     snippetType="autosnippet"
     },
-    
+
     fmta(
       [[
         \vspace{<>}
@@ -237,7 +237,7 @@ return {
     trig="&v1",
     snippetType="autosnippet"
     },
-    
+
     fmta(
       [[
         \vspace{1em}
