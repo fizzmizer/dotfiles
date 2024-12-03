@@ -35,8 +35,9 @@
         "pulseaudio#microphone",
         "custom/r_end",
         "custom/l_end",
-        "cpu",
-        "memory",
+        "custom/pacman",
+//        "cpu",
+//        "memory",
         "battery",
         "custom/r_end",
         "custom/l_end",
@@ -58,6 +59,17 @@
         "on-click-right": "code ~/.config/hypr/script/toggle-theme.sh"
     },
     
+    "custom/pacman": {
+    "format": "{} {icon} ",
+    "return-type": "json",
+    "format-icons": {
+        "has-updates": "",
+        "updated": "󰮯"
+    },
+    "exec-if": "which waybar-module-pacman-updates",
+    "exec": "waybar-module-pacman-updates --interval-seconds 5 --network-interval-seconds 300"
+    },
+
     "hyprland/workspaces": {
         "rotate": 0,
         "all-outputs": true,

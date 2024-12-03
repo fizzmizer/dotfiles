@@ -1,7 +1,7 @@
 #!/usr/bin/env sh
 
 [ -z "${1}" ] || opt="${1}"
-wallpapers_dir="/home/antoine/Pictures/Comics and wallpapers/wallpapers"
+wallpapers_dir="/home/antoine/Pictures/wallpapers"
 PICS=($(ls "${wallpapers_dir}" | grep -E ".jpg$|.jpeg$|.png$|.gif$"))
 rofiConf="${XDG_CONFIG_HOME:-$HOME/.config}/rofi/wallpaper-selector.rasi"
 
