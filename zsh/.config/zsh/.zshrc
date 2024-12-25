@@ -32,15 +32,15 @@ bindkey '^ ' autosuggest-accept
 
 alias ch="cd ~/Documents/Works-in-progress/wip/chapitres/"
 alias ww="cd ~/Documents/Works-in-progress/"
-alias vc="nvim ~/.config/nvim/"
+alias vc="nvim ~/.config/nvim/lua/"
 alias v="nvim"
 alias syu="sudo pacman -Syu"
 alias gpom="git push origin main"
 alias gs="git status"
-alias lf="lfub"
 alias cd="z"
 alias yt480="yt-dlp -f 'bestvideo[height<=480]+bestaudio/best[height<=480]'"
 alias yt720="yt-dlp -f 'bestvideo[height<=720]+bestaudio/best[height<=720]'"
+alias poem="curl -s https://poetrydb.org/random/1/title,author,lines.text | more"
 
 
 function y() {
