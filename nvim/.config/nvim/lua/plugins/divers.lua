@@ -50,16 +50,16 @@ return{
         },
       }
     },
-    {
-       "rcarriga/nvim-notify",
-	config = function()
-	  require("notify").setup({
-	  timeout = 1000,
-	  stages = 'fade_in_slide_out'
-	  })
-         vim.notify = require("notify")
-	end,
-    },
+--    {
+--       "rcarriga/nvim-notify",
+--	config = function()
+--	  require("notify").setup({
+--	  timeout = 1000,
+--	  stages = 'fade_in_slide_out'
+--	  })
+--         vim.notify = require("notify")
+--	end,
+--    },
     {
        "folke/noice.nvim",
        event = "VeryLazy",
@@ -85,6 +85,19 @@ return{
             lsp_doc_border = false, -- add a border to hover docs and signature help
           },
       })
+    },
+
+    {
+      "folke/snacks.nvim",
+      priority = 1000,
+      lazy = false,
+      opts = {
+        bigfile = { enabled = true },
+        notifier = { enabled = true },
+        quickfile = { enabled = true },
+        statuscolumn = { enabled = false },
+        words = { enabled = true },
+      },
     },
 
     {
