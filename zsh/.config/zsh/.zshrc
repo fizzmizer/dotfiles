@@ -32,6 +32,7 @@ bindkey '^ ' autosuggest-accept
 
 alias ch="cd ~/Documents/Works-in-progress/wip/chapitres/"
 alias ww="cd ~/Documents/Works-in-progress/"
+alias mage="git commit -a -m 'mage' && git push origin main"
 alias vc="nvim ~/.config/nvim/lua/"
 alias v="nvim"
 alias syu="sudo pacman -Syu"
