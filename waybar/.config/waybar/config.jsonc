@@ -109,7 +109,7 @@
         "locale":"fr_BE.utf-8",
         "format": "{:L%R - %A %d %b %Y -}",
         "rotate": 0,
-        "format-alt": "{:%R}",
+        "format-alt": "{:%R -}",
         "tooltip-format": "<tt>{calendar}</tt>",
         "calendar": {
             "mode": "year",
