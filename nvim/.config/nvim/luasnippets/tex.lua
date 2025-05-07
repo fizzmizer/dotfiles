@@ -36,7 +36,7 @@ return {
     fmta(
       [[
         \begin{enumerate}
-            <>
+            \item <>
         \end{enumerate}
 
         <>
@@ -72,7 +72,7 @@ return {
     fmta(
       [[
         \begin{itemize}
-            <>
+            \item <>
         \end{itemize}
 
         <>
@@ -144,6 +144,26 @@ return {
   ),
 
 
+ s({
+    trig="&block",
+    snippetType="autosnippet"
+    },
+
+    fmta(
+      [[
+
+        \begin{exampleblock}{}
+          {\large ``<>''}
+          \vskip1mm
+          \hspace*\fill{\small <>}
+        \end{exampleblock}
+
+        <>
+
+      ]],
+      { i(1), i(2), i(3) }
+    )
+  ),
 
 
 
@@ -253,14 +273,14 @@ return {
 
   s({trig="&it", snippetType="autosnippet"},
     fmta(
-      "\\textit{<>} <>",
+      "\\textit{<>}<>",
       { d(1, get_visual), i(2) }
     )
   ),
 
   s({trig="&bf", snippetType="autosnippet"},
     fmta(
-      "\\textbf{<>} <>",
+      "\\textbf{<>}<>",
       { d(1, get_visual), i(2) }
     )
   ),
@@ -305,6 +325,12 @@ return {
   ),
 
 
+  s({trig="&tc", snippetType="autosnippet"},
+    fmta(
+      "\\textcite[p.~<>]{<>}<>",
+      { d(1, get_visual), i(2), i(3) }
+    )
+  ),
 
 
 }

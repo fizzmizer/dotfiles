@@ -245,6 +245,14 @@ return{
         },
       }
 
+
+      require("lspconfig")["tinymist"].setup {
+          settings = {
+              formatterMode = "typstyle",
+              exportPdf = "onType",
+              semanticTokens = "disable"
+          }
+      }
       -- Ensure the servers and tools above are installed
       --  To check the current status of installed tools and/or manually install
       --  other tools, you can run
@@ -258,6 +266,7 @@ return{
       local ensure_installed = vim.tbl_keys(servers or {})
       vim.list_extend(ensure_installed, {
         'stylua', -- Used to format Lua code
+        'tinymist',
       })
       require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
