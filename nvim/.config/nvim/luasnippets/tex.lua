@@ -105,10 +105,10 @@ return {
 
     fmta(
       [[
-      \begin{minipage}{.48\\textwidth}
+      \begin{minipage}{.48\textwidth}
           <>
       \end{minipage}\hfill
-      \begin{minipage}{.48\\textwidth}
+      \begin{minipage}{.48\textwidth}
           <>
       \end{minipage}
 
@@ -176,9 +176,9 @@ return {
     fmta(
       [[
         \begin{frame}
-        \frametitle{<>}
+            \frametitle{<>}
 
-        <>
+            <>
 
 
         \end{frame}

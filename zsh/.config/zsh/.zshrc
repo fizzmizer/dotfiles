@@ -40,6 +40,7 @@ alias gs="git status"
 alias cd="z"
 alias yt480="yt-dlp -f 'bestvideo[height<=480]+bestaudio/best[height<=480]'"
 alias yt720="yt-dlp -f 'bestvideo[height<=720]+bestaudio/best[height<=720]'"
+alias yt1080="yt-dlp -f 'bestvideo[height<=1080]+bestaudio/best[height<=1080]'"
 alias poem="curl -s https://poetrydb.org/random/1/title,author,lines.text | more"
 
 

@@ -30,6 +30,7 @@
 //        "custom/warp",
 //        "custom/r_end",
         "custom/l_end",
+//        "custom/cava",
         "backlight",
         "pulseaudio",
         "pulseaudio#microphone",
@@ -54,9 +55,9 @@
     
     "custom/arch": {
         "format": " ",
-        "on-click": "toggle-theme.sh",
+        "on-click": "sh ~/.config/hypr/script/rofi-wallpaper-selector.sh 1",
         "tooltip": false,
-        "on-click-right": "code ~/.config/hypr/script/toggle-theme.sh"
+        "on-click-right": "sh ~/.config/hypr/script/rofi-wallpaper-selector.sh 0"
     },
     
     "custom/pacman": {
@@ -313,5 +314,10 @@
         "format": "",
         "interval": "once",
         "tooltip": false
+    },
+    "custom/cava": {
+      "format": "{text}",
+      "exec": "~/.config/waybar/cava_module.py",
+      "return-type": "json"
     }
 }

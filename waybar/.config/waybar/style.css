@@ -69,6 +69,13 @@ window#waybar {
 }
 
 
+#custom-cava {
+    padding: 0 10px;
+    background-color: @background;
+    color: @yellow;
+}
+
+
 /* ------ Pulseaudio ------ */
 #pulseaudio {
     color: @orange;
