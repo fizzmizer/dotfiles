@@ -132,5 +132,4 @@ return{
         --vim.keymap.set({'n', 'x', 'o'}, 'S', '<Plug>(leap-from-window)')
       end,
     },
-
 }

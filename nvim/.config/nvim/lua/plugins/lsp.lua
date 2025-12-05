@@ -1,25 +1,7 @@
 return{
---[[    {
-    "williamboman/mason.nvim",
-    config = function()
-      require("mason").setup()
-    end,
-    },
 
-    {
-    "williamboman/mason-lspconfig.nvim",
-    dependencies = {"mason.nvim"},
-    config = function()
-      require("mason-lspconfig").setup()
-      require("mason-lspconfig").setup_handlers {
-          function (server_name)
-              require("lspconfig")[server_name].setup({})
-          end,
-      }
-    end,
-    },
     {"neovim/nvim-lspconfig"},
---]]
+
     {"hrsh7th/cmp-nvim-lsp"},
     {
        "hrsh7th/nvim-cmp",
@@ -246,13 +228,24 @@ return{
       }
 
 
-      require("lspconfig")["tinymist"].setup {
+      vim.lsp.config('tinymist', {
           settings = {
               formatterMode = "typstyle",
               exportPdf = "onType",
               semanticTokens = "disable"
           }
-      }
+      })
+      vim.lsp.enable('tinymist')
+
+      --require("lspconfig")["tinymist"].setup {
+      --    settings = {
+      --        formatterMode = "typstyle",
+      --        exportPdf = "onType",
+      --        semanticTokens = "disable"
+      --    }
+      --}
+
+
       -- Ensure the servers and tools above are installed
       --  To check the current status of installed tools and/or manually install
       --  other tools, you can run
@@ -278,7 +271,9 @@ return{
             -- by the server configuration above. Useful when disabling
             -- certain features of an LSP (for example, turning off formatting for ts_ls)
             server.capabilities = vim.tbl_deep_extend('force', {}, capabilities, server.capabilities or {})
-            require('lspconfig')[server_name].setup(server)
+             require('lspconfig')[server_name].setup(server)
+            --vim.lsp.config(server, config)
+            --vim.lsp.enable(server)
           end,
         },
       }
