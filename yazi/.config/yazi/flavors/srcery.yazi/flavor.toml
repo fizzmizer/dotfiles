@@ -160,8 +160,8 @@ rules = [
 	{ mime = "application/vnd.*", fg = "#98b737" },  # Green
 
 	# Fallback
-	{ name = "*", fg = "#ff5f00" },  # Light gray
-	{ name = "*/", fg = "#fbb829" }  # Blue
+	{ url = "*", fg = "#ff5f00" },  # Light gray
+	{ url = "*/", fg = "#fbb829" }  # Blue
 ]
 
 # : }}}
