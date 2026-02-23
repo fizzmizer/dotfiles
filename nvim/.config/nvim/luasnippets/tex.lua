@@ -239,6 +239,21 @@ return {
   ),
 
  s({
+    trig="&em",
+    snippetType="autosnippet"
+    },
+
+    fmta(
+      [[
+        \vspace{1em}
+
+        <>
+      ]],
+      { i(1) }
+    )
+  ),
+
+ s({
     trig="&vs",
     snippetType="autosnippet"
     },
