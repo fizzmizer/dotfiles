@@ -124,7 +124,8 @@ return{
     },
 
     {
-      'ggandor/leap.nvim',
+      --'ggandor/leap.nvim',
+      url = 'https://codeberg.org/andyg/leap.nvim',
       config = function()
         vim.keymap.set({'n'}, '<leader>f',  '<Plug>(leap)')
         --vim.keymap.set({'n', 'x', 'o'}, 's',  '<Plug>(leap-forward)')

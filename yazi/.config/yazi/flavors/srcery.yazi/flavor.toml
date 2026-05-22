@@ -20,7 +20,7 @@ marker_selected = { fg = "#fbb829", bg = "#fbb829" }  # Yellow
 # Tab
 tab_active = { bg = "#585858", fg = "#2c78bf" }  # Darkened background, Blue text
 tab_inactive = {}
-tab_width    = 1
+#tab_width    = 1
 
 # Count
 count_copied   = { fg = "#303030", bg = "#98b737" }  # Darkened black on Green
