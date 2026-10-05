@@ -55,9 +55,9 @@
     
     "custom/arch": {
         "format": " ",
-        "on-click": "sh ~/.config/hypr/script/rofi-wallpaper-selector.sh 1",
+        "on-click": " ~/.config/waybar/wallpaper-selector.sh 1",
         "tooltip": false,
-        "on-click-right": "sh ~/.config/hypr/script/rofi-wallpaper-selector.sh 0"
+        "on-click-right": "~/.config/waybar/wallpaper-selector.sh 0"
     },
     
     "custom/pacman": {

@@ -2,7 +2,7 @@
 ---- KEYBINDINGS ----
 ---------------------
 
-local mainMod = "SUPER"
+local mainMod     = "SUPER"
 local terminal    = "kitty"
 local fileManager = "nautilus"
 local menu        = "wofi --show=run"
@@ -12,7 +12,7 @@ local browser     = "firefox"
 -- Example binds, see https://wiki.hypr.land/Configuring/Basics/Binds/ for more
 hl.bind(mainMod .. " + return", hl.dsp.exec_cmd(terminal))
 local closeWindowBind = hl.bind(mainMod .. "+ SHIFT + A", hl.dsp.window.close())
- hl.bind(mainMod .. " + F", hl.dsp.window.fullscreen("maximized", "toggle"))
+hl.bind(mainMod .. " + F", hl.dsp.window.fullscreen("maximized", "toggle"))
 -- closeWindowBind:set_enabled(false)
 -- hl.bind(mainMod .. " + M", hl.dsp.exec_cmd("command -v hyprshutdown >/dev/null 2>&1 && hyprshutdown || hyprctl dispatch 'hl.dsp.exit()'"))
 hl.bind(mainMod .. " + E", hl.dsp.exec_cmd(fileManager))
@@ -21,11 +21,33 @@ hl.bind(mainMod .. " + D", hl.dsp.exec_cmd(menu))
 hl.bind(mainMod .. " + P", hl.dsp.exec_cmd("quickshell -c HyprQuickFrame -n"))
 hl.bind(mainMod .. "+SHIFT + P", hl.dsp.exec_cmd("HYPRSHOT_EDITOR=1 quickshell -c HyprQuickFrame -n"))
 
--- Move focus 
+hl.bind(mainMod .. " + UP", hl.dsp.exec_cmd("sh ~/.config/waybar/wallpaper-selector.sh 1"))
+hl.bind(mainMod .. " + DOWN", hl.dsp.exec_cmd("sh ~/.config/waybar/wallpaper-selector.sh 0"))
+hl.bind(mainMod .. " + ESCAPE", hl.dsp.exec_cmd("killall waybar || waybar"))
+
+
 hl.bind(mainMod .. " + J", hl.dsp.layout("cyclenext"))
 hl.bind(mainMod .. " + K", hl.dsp.layout("cycleprev"))
 hl.bind(mainMod .. " + H", hl.dsp.layout("mfact -0.05"))
 hl.bind(mainMod .. " + L", hl.dsp.layout("mfact +0.05"))
+
+
+hl.bind(mainMod .. "+SHIFT + J", hl.dsp.layout("swapnext"))
+hl.bind(mainMod .. "+SHIFT + K", hl.dsp.layout("swapprev"))
+
+
+hl.bind(mainMod .. " + W", hl.dsp.window.float({action = "toggle"}))
+
+-- hl.bind(mainMod .. "+SHIFT + J", hl.dsp.window.float({action = "toggle"}))
+-- hl.bind(mainMod .. "+SHIFT + K", hl.dsp.window.float({action = "toggle"}))
+-- hl.bind(mainMod .. "+SHIFT +CONTROL + H", hl.dsp.window.float({action = "toggle"}))
+-- hl.bind(mainMod .. "+SHIFT +CONTROL + J", hl.dsp.window.float({action = "toggle"}))
+-- hl.bind(mainMod .. "+SHIFT +CONTROL + K", hl.dsp.window.float({action = "toggle"}))
+-- hl.bind(mainMod .. "+SHIFT +CONTROL + L", hl.dsp.window.float({action = "toggle"}))
+
+-- pin exists
+
+
 
 -- Switch workspaces with mainMod + [0-9]
 -- Move active window to a workspace with mainMod + SHIFT + [0-9]
